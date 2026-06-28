@@ -412,7 +412,11 @@ int main(int argc, char* argv[]) {
 			fprintf(stderr,_("The target directory is not valid; it may be an ordinary file.\n"));
 		}
 	} else {
+#ifdef _WIN32
+		if (mkdir(targetname) != 0) {
+#else
 		if (mkdir(targetname, 0777) != 0) {
+#endif
 			fprintf(stderr,_("Failed creating target directory %s\n"), targetname);
 			perror("");
 			DVDClose(_dvd);
@@ -428,7 +432,11 @@ int main(int argc, char* argv[]) {
 			fprintf(stderr,_("The title directory is not valid; it may be an ordinary file.\n"));
 		}
 	} else {
+#ifdef _WIN32
+		if (mkdir(targetname) != 0) {
+#else
 		if (mkdir(targetname, 0777) != 0) {
+#endif
 			fprintf(stderr,_("Failed creating title directory\n"));
 			perror("");
 			DVDClose(_dvd);
@@ -443,7 +451,11 @@ int main(int argc, char* argv[]) {
 			fprintf(stderr,_("The VIDEO_TS directory is not valid; it may be an ordinary file.\n"));
 		}
 	} else {
+#ifdef _WIN32
+		if (mkdir(targetname) != 0) {
+#else
 		if (mkdir(targetname, 0777) != 0) {
+#endif
 			fprintf(stderr,_("Failed creating VIDEO_TS directory\n"));
 			perror("");
 			DVDClose(_dvd);
